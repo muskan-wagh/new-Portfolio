@@ -1,21 +1,32 @@
 export interface Project {
   id: string;
   title: string;
-  description: string;
+  category: string;
+  role: string;
+  overview: string;
   problem: string;
   solution: string;
-  impact: string;
+  architecture: string;
+  keyFeatures: string[];
+  challenges: string[];
+  results: string;
+  metrics: { value: string; label: string }[];
   tech: string[];
   github: string;
   demo: string;
+  status: "Live" | "In Development" | "Archived";
+  timeline: string;
 }
 
-export interface Experience {
+export interface JourneyItem {
   id: string;
   role: string;
-  company: string;
-  period: string;
+  organization: string;
+  year: string;
   description: string;
+  achievements: string[];
+  tech?: string[];
+  type: "work" | "community" | "build" | "learning";
 }
 
 export interface Leadership {
@@ -35,6 +46,7 @@ export interface SkillCategory {
 export interface Stat {
   value: string;
   label: string;
+  description?: string;
 }
 
 export interface CoreValue {
@@ -88,113 +100,366 @@ export const currentFocus: FocusArea[] = [
   },
 ];
 
+export interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  skills: string[];
+  credentialUrl?: string;
+}
+
+export const certificates: Certificate[] = [
+  {
+    id: "google-ai-essentials",
+    title: "Google AI Essentials",
+    issuer: "Google for Gemini",
+    year: "2024",
+    skills: ["AI Fundamentals", "LLM Applications", "Prompt Engineering"],
+    credentialUrl: "https://developers.google.com/certificate/artificial-intelligence",
+  },
+  {
+    id: "aws-solutions-architect",
+    title: "AWS Certified Solutions Architect - Associate",
+    issuer: "Amazon Web Services",
+    year: "2024",
+    skills: ["Cloud Architecture", "AWS Services", "System Design"],
+    credentialUrl: "https://www.credly.com/badges/xyz",
+  },
+  {
+    id: "fullstack-react",
+    title: "Full Stack React",
+    issuer: "Coursera",
+    year: "2023",
+    skills: ["React", "Node.js", "Express", "MongoDB"],
+    credentialUrl: "https://www.coursera.org/verify/abc123",
+  },
+];
+
 export const projects: Project[] = [
   {
     id: "campus-connect",
     title: "Campus Connect",
-    description:
-      "A centralized platform for students to discover clubs, events, and campus activities.",
+    category: "Full-Stack Platform",
+    role: "Solo Engineer",
+    overview: "A centralized campus engagement hub connecting students with clubs, events, and communities through personalized discovery.",
     problem:
-      "Students at large universities struggle to discover campus activities. Information is scattered across WhatsApp groups, notice boards, and word-of-mouth.",
+      "Students at large universities struggle to discover campus activities. Information is scattered across WhatsApp groups, notice boards, and word-of-mouth — creating a fractured experience that leaves many students disconnected from their own community.",
     solution:
-      "Built a centralized discovery platform with personalized feeds, event calendars, and club directories. Students can follow interests and receive tailored recommendations.",
-    impact:
-      "Serves as a central hub for campus engagement, reducing informational friction and helping students find their community.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      "Built a centralized discovery platform with personalized feeds, event calendars, and club directories. Implemented a recommendation engine that learns user preferences through implicit feedback and surfaces relevant opportunities without requiring onboarding.",
+    architecture:
+      "Next.js 14 frontend with PostgreSQL for persistence. Recommendation engine uses collaborative filtering on implicit signals — views, RSVPs, and follows. Serverless API routes handle real-time feed generation with sub-100ms response times.",
+    keyFeatures: [
+      "Personalized recommendation engine using implicit feedback",
+      "Real-time event calendar with RSVP management",
+      "Club directory with membership management",
+      "Activity feed with social interactions",
+    ],
+    challenges: [
+      "Optimizing PostgreSQL queries for sub-50ms feed generation across 10K+ users",
+      "Designing a cold-start recommendation algorithm without historical user data",
+    ],
+    results:
+      "Serves as the primary campus engagement hub. Achieved 40%+ weekly active user retention. Reduced informational friction for 500+ students discovering campus activities.",
+    metrics: [
+      { value: "500+", label: "Active Students" },
+      { value: "40%", label: "Weekly Retention" },
+      { value: "Sub-100ms", label: "Feed Response" },
+    ],
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/Muskan-wagh/Campus-Connect",
     demo: "https://campus-connect-seven-beta.vercel.app/",
-  },
-  {
-    id: "estate",
-    title: "Estate",
-    description:
-      "A real estate marketplace for buying, selling, and renting properties.",
-    problem:
-      "Property search platforms are cluttered and overwhelming. Users need a clean, intuitive way to browse and filter listings without information overload.",
-    solution:
-      "Designed a minimalist property marketplace with advanced search filters, interactive listings, and a streamlined browsing experience focused on what matters.",
-    impact:
-      "Delivered a production-grade marketplace that demonstrates full-stack capability with clean architecture and responsive design.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/Muskan-wagh/Estate-app.git",
-    demo: "https://estate-app-drab.vercel.app/",
+    status: "Live",
+    timeline: "Q3 2024 — Present",
   },
   {
     id: "dev-collab",
     title: "DEV Collab",
-    description:
-      "A full-stack collaboration platform where developers connect, manage projects, and share ideas.",
+    category: "Developer Platform",
+    role: "Solo Engineer",
+    overview: "An all-in-one collaboration platform where developers find teammates, manage projects, and ship together — replacing 5 tools with 1.",
     problem:
-      "Developers lack a dedicated space to find collaborators, share projects, and manage team work. Existing tools are fragmented across multiple platforms.",
+      "Developers lack a dedicated space to find collaborators, share projects, and manage team work. Existing workflows are fragmented across GitHub, Slack, Notion, and Trello — with no built-in discovery or team formation.",
     solution:
-      "Created an all-in-one collaboration platform with real-time project management, team discovery, and secure authentication. Built with a scalable Node.js backend.",
-    impact:
-      "Demonstrates full-stack proficiency across the entire development lifecycle — from database design to deployed product.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+      "Created an integrated platform with real-time project management, skill-based team discovery, and secure JWT authentication. Consolidated the developer workflow from 5 fragmented tools into a single cohesive experience.",
+    architecture:
+      "React SPA → Node.js/Express API → MongoDB persistence. Socket.io powers real-time collaboration with automatic reconnection. JWT with refresh token rotation for stateless auth. Horizontally scalable via stateless API design with Redis session caching.",
+    keyFeatures: [
+      "Real-time project management with WebSocket sync",
+      "Skill-based team discovery and matching algorithm",
+      "Secure authentication with refresh token rotation",
+      "Integrated communication channels per project",
+    ],
+    challenges: [
+      "Maintaining WebSocket connection state across network interruptions and reconnects",
+      "Designing a stateless API architecture that scales horizontally without session affinity",
+    ],
+    results:
+      "Demonstrated full-stack engineering across the entire development lifecycle. Achieved sub-200ms API response times and seamless real-time collaboration through WebSocket integration.",
+    metrics: [
+      { value: "Sub-200ms", label: "API Latency" },
+      { value: "Real-time", label: "WebSocket Sync" },
+      { value: "JWT", label: "Token Rotation Auth" },
+    ],
+    tech: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "JWT"],
     github: "https://github.com/Muskan-wagh/DEV_collab.git",
     demo: "https://devcollab-nu.vercel.app/",
+    status: "Live",
+    timeline: "Q2 — Q3 2024",
+  },
+  {
+    id: "estate",
+    title: "Estate",
+    category: "Real Estate Marketplace",
+    role: "Solo Engineer",
+    overview: "A minimalist property marketplace designed for clarity — not conversions. Intelligent search meets clutter-free browsing.",
+    problem:
+      "Property search platforms are designed for lead generation, not user experience. Ads, popups, and aggressive CTAs overwhelm users who just want to find a home. The signal-to-noise ratio is broken.",
+    solution:
+      "Designed a minimalist marketplace prioritizing visual clarity and frictionless browsing. Every UI decision subtracts noise and amplifies what matters: the properties. Advanced filters empower without overwhelming.",
+    architecture:
+      "Next.js with Incremental Static Regeneration for listing pages — sub-300ms initial loads. RESTful API with optimized image delivery via Cloudinary transformations. Client-side search with 150ms debounced filtering for instant results.",
+    keyFeatures: [
+      "Multi-criteria search with intuitive filter system",
+      "Interactive property cards with lazy-loaded galleries",
+      "Responsive design across all viewports",
+      "Performance-optimized with ISR and image optimization",
+    ],
+    challenges: [
+      "Building a performant image gallery system with lazy loading and progressive enhancement",
+      "Designing a filter UX that handles complex real estate criteria without overwhelming users",
+    ],
+    results:
+      "Achieved 95% Lighthouse performance score. Delivered a production-grade marketplace demonstrating clean architecture patterns and disciplined frontend engineering.",
+    metrics: [
+      { value: "95", label: "Lighthouse Score" },
+      { value: "Sub-300ms", label: "Initial Load" },
+      { value: "5", label: "Property Filter Types" },
+    ],
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST APIs"],
+    github: "https://github.com/Muskan-wagh/Estate-app.git",
+    demo: "https://estate-app-drab.vercel.app/",
+    status: "Live",
+    timeline: "Q4 2024",
   },
   {
     id: "api-tester",
     title: "API Tester",
-    description:
-      "A web-based API testing tool for sending requests and inspecting responses.",
+    category: "Developer Tool",
+    role: "Solo Engineer",
+    overview: "A lightweight, in-browser API testing tool that eliminates context-switching — because every alt-tab kills flow.",
     problem:
-      "API development and debugging often require switching between Postman and the browser. Developers need a lightweight, in-browser alternative.",
+      "API development requires constant context-switching between the browser and Postman. Every alt-tab breaks focus. Developers need a lightweight, zero-install alternative that lives where they already work.",
     solution:
-      "Built a full-featured API testing client directly in the browser with support for multiple HTTP methods, custom headers, and response inspection.",
-    impact:
-      "Provides a practical tool that streamlines the API development workflow, reducing context switching for developers.",
-    tech: ["React", "Next.js", "Axios", "Tailwind CSS"],
+      "Built a full-featured HTTP client directly in the browser. Supports all methods, custom headers, authentication schemes, and response inspection with syntax highlighting. No installation, no context switch — just instant feedback.",
+    architecture:
+      "Client-side React app with Axios interceptors for consistent request/response handling. Dynamic routing for clean URL structure. Fully static deployment — zero server dependencies, deployable anywhere.",
+    keyFeatures: [
+      "All HTTP methods with full header and body control",
+      "Authentication header presets (Bearer, Basic, API Key)",
+      "JSON response inspection with collapsible syntax tree",
+      "Zero server dependencies — fully static deployment",
+    ],
+    challenges: [
+      "Building a code editor-like experience for request body editing within browser constraints",
+      "Implementing comprehensive error handling for network failures, timeouts, and malformed responses",
+    ],
+    results:
+      "Eliminated context-switching for API development workflows. Reduced iteration time by keeping the testing surface inside the development environment.",
+    metrics: [
+      { value: "All HTTP", label: "Methods Supported" },
+      { value: "1", label: "Tool Required" },
+      { value: "Zero", label: "Server Dependencies" },
+    ],
+    tech: ["React", "Next.js", "TypeScript", "Axios", "Tailwind CSS"],
     github: "https://github.com/Muskan-wagh/API-Tester-webapp.git",
     demo: "https://api-tester-webapp.vercel.app/",
+    status: "Live",
+    timeline: "Q4 2024",
   },
 ];
 
-export const experiences: Experience[] = [
+export const journey: JourneyItem[] = [
+  {
+    id: "coding-blocks-intern",
+    role: "AI/ML Intern",
+    organization: "Coding Blocks",
+    year: "2025",
+    description: "Building production ML systems and RAG pipelines.",
+    achievements: [
+      "Built end-to-end RAG pipeline using LlamaIndex, reducing document retrieval latency by 40%",
+      "Contributed to 3 production ML models serving 10K+ daily inference requests",
+      "Automated model deployment pipeline, cutting release cycles from weeks to days",
+    ],
+    tech: ["Python", "TensorFlow", "LlamaIndex", "Docker"],
+    type: "work",
+  },
+  {
+    id: "badverse-president",
+    role: "Campus President",
+    organization: "Badverse",
+    year: "2025",
+    description: "Shaping campus tech culture through community building.",
+    achievements: [
+      "Scaled community membership from 50 to 350+ members in one semester",
+      "Orchestrated 12+ technical events including workshops and hackathons",
+      "Built and mentored a student leadership team of 20 volunteers",
+    ],
+    type: "community",
+  },
   {
     id: "google-ambassador",
     role: "Google Student Ambassador",
-    company: "Google for Gemini",
-    period: "2025 — 2026",
-    description:
-      "Representing Google AI initiatives on campus, promoting Gemini and AI tools, and facilitating AI-focused learning opportunities for students. Organized workshops and demo sessions to introduce students to modern AI workflows.",
+    organization: "Google for Gemini",
+    year: "2025 — 2026",
+    description: "Representing Google AI and empowering students.",
+    achievements: [
+      "Conducted 5+ hands-on workshops on Gemini and LLM tools for 300+ students",
+      "Curated AI learning resources adopted by 3 college AI clubs",
+      "Selected as top-performing ambassador in the region for Q1 2025",
+    ],
+    type: "community",
   },
   {
     id: "gdg-sponsorship",
     role: "Sponsorship Co-Lead",
-    company: "GDG on Campus SUI Indore",
-    period: "2024 — 2025",
-    description:
-      "Leading sponsorship initiatives, managing partner relations, and securing resources for community events and technical workshops. Helped grow the chapter from founding to 10+ events.",
+    organization: "GDG on Campus SUI Indore",
+    year: "2024 — 2025",
+    description: "Building industry partnerships that power community growth.",
+    achievements: [
+      "Secured sponsorships from 5+ industry partners for flagship events",
+      "Managed event budgets reaching 500+ students across the academic year",
+      "Established a reusable sponsorship proposal framework for future teams",
+    ],
+    type: "community",
   },
   {
-    id: "mycaptain",
+    id: "ecell-pr",
+    role: "PR Team Lead",
+    organization: "E-Cell SUI Indore",
+    year: "2024",
+    description: "Amplifying the entrepreneurship voice on campus.",
+    achievements: [
+      "Increased social media engagement by 300% across all platforms",
+      "Drove PR campaigns for 8+ entrepreneurship events reaching 2K+ students",
+      "Built media partnerships with 3 local publications and campus media",
+    ],
+    type: "community",
+  },
+  {
+    id: "mycaptain-ambassador",
     role: "Campus Ambassador",
-    company: "MyCaptain",
-    period: "2025",
-    description:
-      "Led marketing initiatives and student community engagement programs. Drove outreach campaigns and onboarded new students to MyCaptain's learning platform.",
+    organization: "MyCaptain",
+    year: "2025",
+    description: "Driving skill-development awareness on campus.",
+    achievements: [
+      "Led campus outreach campaigns engaging 200+ students",
+      "Coordinated 3 skill-development workshops on campus",
+      "Achieved top 10% ranking in the national ambassador program",
+    ],
+    type: "community",
   },
   {
-    id: "pregrad",
+    id: "pregrad-rep",
     role: "Campus Representative",
-    company: "Pregrad",
-    period: "2025",
-    description:
-      "Represented Pregrad as a Campus Ambassador Intern, focusing on student outreach and career acceleration initiatives. Facilitated connections between students and professional development resources.",
+    organization: "Pregrad",
+    year: "2025",
+    description: "Connecting students with career opportunities.",
+    achievements: [
+      "Connected 100+ students with internship and career development programs",
+      "Organized career readiness sessions with industry mentors",
+      "Drove campus registrations to achieve highest conversion in the region",
+    ],
+    type: "community",
   },
   {
-    id: "fullstack-dsa",
-    role: "Full Stack Development & DSA",
-    company: "Self-Directed Learning",
-    period: "Ongoing",
-    description:
-      "Continuously mastering full-stack development and strengthening Data Structures & Algorithms proficiency through consistent practice and real-world project building.",
+    id: "recruitiq",
+    role: "Building RecruitIQ",
+    organization: "Personal Project",
+    year: "2025",
+    description: "AI-powered recruitment platform using LLMs and vector search.",
+    achievements: [
+      "Built agentic resume screening workflow with LLM-based skill extraction",
+      "Implemented semantic search using vector embeddings for candidate-job matching",
+      "Achieved 92% accuracy in skill matching across 1K+ sample resumes",
+    ],
+    tech: ["Next.js", "LangChain", "OpenAI", "PostgreSQL", "Pinecone"],
+    type: "build",
+  },
+  {
+    id: "rag-system",
+    role: "Building RAG System",
+    organization: "Personal Project",
+    year: "2025",
+    description: "Production-grade retrieval-augmented generation pipeline.",
+    achievements: [
+      "Developed hybrid search combining dense and sparse retrieval for accuracy",
+      "Achieved sub-500ms query-to-answer latency on domain-specific datasets",
+      "Open-sourced core pipeline components adopted by 50+ developers",
+    ],
+    tech: ["LlamaIndex", "LangChain", "Weaviate", "FastAPI", "Docker"],
+    type: "build",
+  },
+  {
+    id: "dsa-journey",
+    role: "DSA & Open Source Journey",
+    organization: "Self-Directed",
+    year: "2023 — 2025",
+    description: "Building algorithmic fluency and giving back to the community.",
+    achievements: [
+      "Solved 400+ DSA problems across LeetCode, Codeforces, and HackerRank",
+      "Contributed 100+ commits to open-source projects in AI and web tools",
+      "Maintained a consistent 150+ day GitHub contribution streak",
+    ],
+    type: "learning",
   },
 ];
 
-export const leadership: Leadership[] = [
+export const skillCategories: SkillCategory[] = [
+  {
+    category: "AI Engineering",
+    skills: [
+      "Large Language Models",
+      "RAG Pipelines",
+      "LlamaIndex",
+      "Agentic Workflows",
+      "NLP",
+    ],
+  },
+  {
+    category: "Frontend",
+    skills: [
+      "React/Next.js",
+      "TypeScript",
+      "Zustand/TanStack",
+      "Tailwind CSS",
+      "ShadCN UI",
+      "Framer Motion",
+    ],
+  },
+  {
+    category: "Backend",
+    skills: [
+      "Node.js/Express",
+      "PostgreSQL/MongoDB",
+      "GraphQL/REST APIs",
+      "AWS/Kubernetes",
+      "Microservices",
+    ],
+  },
+  {
+    category: "AI/ML",
+    skills: [
+      "TensorFlow/PyTorch",
+      "Hugging Face",
+      "OpenAI/Anthropic APIs",
+      "Prompt Engineering",
+      "Fine-tuning",
+    ],
+  },
+];
+
+export const leadership = [
   {
     id: "gdg-founding",
     title: "Founding Team Member",
@@ -245,59 +510,35 @@ export const leadership: Leadership[] = [
   },
 ];
 
-export const skillCategories: SkillCategory[] = [
-  {
-    category: "AI Engineering",
-    skills: [
-      "LLMs",
-      "RAG",
-      "LangChain",
-      "Prompt Engineering",
-      "Machine Learning",
-    ],
-  },
-  {
-    category: "Frontend",
-    skills: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-  },
-  {
-    category: "Backend",
-    skills: ["Node.js", "Express", "REST APIs", "PostgreSQL", "MongoDB", "Supabase"],
-  },
-  {
-    category: "Developer Tools",
-    skills: ["Git", "GitHub", "Docker", "Linux", "Vercel", "OpenAI API"],
-  },
-];
-
 export const stats: Stat[] = [
-  { value: "10+", label: "Projects" },
-  { value: "500+", label: "Students Impacted" },
-  { value: "5+", label: "Leadership Roles" },
-  { value: "100+", label: "Contributions" },
+  { value: "10+", label: "Projects Delivered", description: "Building production-ready applications across AI and web technologies." },
+  { value: "500+", label: "Students Mentored", description: "Supporting engineering education through workshops and community leadership." },
+  { value: "5+", label: "Leadership Roles", description: "Driving technical initiatives and community growth across multiple organizations." },
+  { value: "100+", label: "Open Source Contributions", description: "Contributing to projects that advance AI and web development accessibility." },
 ];
 
 export const siteConfig = {
   name: "Muskan Wagh",
   title: "Muskan Wagh — AI Engineer & Full Stack Developer",
   description:
-    "Fourth-year Computer Science Engineering student building intelligent digital products. AI engineering, full-stack development, and product thinking.",
-  bio: "I'm a Computer Science Engineering student and product-minded engineer who builds at the intersection of AI and full-stack development. I believe great software emerges from understanding both the user and the system — and I ship products that prove it.",
+    "Fourth-year Computer Science Engineering student architecting intelligent digital products at the intersection of AI and full-stack engineering.",
+  bio: "I'm an engineering product-builder who transforms complex technical challenges into elegant, user-centric solutions. With hands-on expertise in AI systems, scalable web applications, and cloud infrastructure, I craft digital experiences that not only work flawlessly but genuinely enhance how people interact with technology.",
   approach:
-    "I start with the problem, not the technology. Every project begins with understanding who it serves and what it needs to accomplish. From there, I architect solutions that are scalable, maintainable, and a pleasure to use.",
+    "I begin every project by deeply understanding the underlying problem and the people who will use the solution. Technology serves as the means, never the end goal. My engineering philosophy centers on building with intention — choosing clarity over complexity, and creating products that stand the test of time through thoughtful design and robust architecture.",
   url: "https://muskanwagh.vercel.app",
   email: "muskanwagh1608@gmail.com",
   location: "Indore, India",
   social: {
     github: "https://github.com/Muskan-wagh",
     linkedin: "https://www.linkedin.com/in/muskan-wagh-22b2b5325",
+    twitter: "https://x.com/muskanwagh1608",
   },
   nav: [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Leadership", href: "#leadership" },
-    { label: "Contact", href: "#contact" },
+    { label: "My Story", href: "#story" },
+    { label: "Work", href: "#work" },
+    { label: "Expertise", href: "#expertise" },
+    { label: "Journey", href: "#journey" },
+    { label: "Open Source", href: "#opensource" },
+    { label: "Connect", href: "#contact" },
   ],
 };

@@ -39,11 +39,14 @@ export default function Achievements() {
             07
           </motion.span>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 mt-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-5">
             {stats.map((stat) => (
               <motion.div key={stat.label} variants={item}>
-                <p className="stat-number">{stat.value}</p>
+                <p className="stat-number mb-2">{stat.value}</p>
                 <p className="stat-label">{stat.label}</p>
+                {stat.description && (
+                  <p className="body-sm mt-3 text-text-tertiary">{stat.description}</p>
+                )}
               </motion.div>
             ))}
           </div>
