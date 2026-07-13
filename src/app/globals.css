@@ -67,15 +67,15 @@
 
   .display-lg {
     font-family: var(--font-sans);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    line-height: 1.15;
+    font-size: clamp(1.125rem, 3vw, 2.25rem);
+    line-height: 1.2;
     letter-spacing: -0.01em;
     font-weight: 500;
   }
 
   .heading-section {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
     line-height: 1.08;
     letter-spacing: 0.08em;
     font-weight: 400;
@@ -118,13 +118,13 @@
 
   .body-lg {
     color: var(--color-text-secondary);
-    font-size: 1.0625rem;
+    font-size: clamp(0.875rem, 1.5vw, 1.0625rem);
     line-height: 1.7;
   }
 
   .body-sm {
     color: var(--color-text-secondary);
-    font-size: 0.8125rem;
+    font-size: clamp(0.75rem, 1.2vw, 0.8125rem);
     line-height: 1.6;
   }
 
@@ -146,8 +146,8 @@
   }
 
   .section-gap {
-    padding-top: clamp(3rem, 5vw, 4.5rem);
-    padding-bottom: clamp(3rem, 5vw, 4.5rem);
+    padding-top: clamp(2rem, 5vw, 4.5rem);
+    padding-bottom: clamp(2rem, 5vw, 4.5rem);
   }
 
   .section-gap-sm {
@@ -185,7 +185,7 @@
 
   .display-2xl {
     font-family: var(--font-sans);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 7vw, 4.5rem);
     line-height: 1.08;
     letter-spacing: -0.02em;
     font-weight: 500;
@@ -193,7 +193,7 @@
 
   .heading-xl {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-size: clamp(1.375rem, 3.5vw, 3rem);
     line-height: 1.06;
     letter-spacing: 0.06em;
     font-weight: 400;
@@ -202,7 +202,7 @@
 
   .heading-2xl {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    font-size: clamp(1.375rem, 4vw, 3.25rem);
     line-height: 1.06;
     letter-spacing: 0.06em;
     font-weight: 400;
@@ -211,7 +211,7 @@
 
   .body-xl {
     color: var(--color-text-secondary);
-    font-size: 1.125rem;
+    font-size: clamp(0.875rem, 1.8vw, 1.125rem);
     line-height: 1.7;
   }
 
@@ -373,7 +373,7 @@
   /* ─── Stats ─── */
   .stat-number {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-size: clamp(1.375rem, 3.5vw, 2.75rem);
     line-height: 1;
     letter-spacing: 0.02em;
     font-weight: 400;
@@ -471,7 +471,7 @@
   /* ─── Metric Block ─── */
   .metric-value {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-size: clamp(1.125rem, 2.5vw, 2.25rem);
     line-height: 1;
     letter-spacing: 0.02em;
     font-weight: 400;
@@ -480,10 +480,10 @@
   }
 
   .metric-label {
-    font-size: 0.6875rem;
+    font-size: clamp(0.5rem, 1vw, 0.6875rem);
     color: var(--color-text-tertiary);
     letter-spacing: 0.06em;
-    margin-top: 0.375rem;
+    margin-top: 0.25rem;
     line-height: 1.3;
   }
 

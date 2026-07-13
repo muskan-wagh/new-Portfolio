@@ -31,7 +31,7 @@ function Chevron({ open }: { open: boolean }) {
       stroke="currentColor"
       strokeWidth="1.2"
       strokeLinecap="round"
-      className="w-3 h-3 transition-transform duration-300"
+      className="w-3 h-3 transition-transform duration-300 flex-shrink-0"
       style={{ transform: open ? "rotate(90deg)" : "rotate(0deg)" }}
     >
       <path d="M6 4l4 4-4 4" />
@@ -59,14 +59,19 @@ function Row({
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center gap-3 md:gap-4 py-3 md:py-3.5 group text-left"
+        className="w-full flex items-center gap-2 md:gap-4 py-3 md:py-3.5 group text-left"
       >
-        <span className="text-[0.625rem] font-medium text-text-tertiary/30 w-5 flex-shrink-0 tabular-nums">
+        <span className="text-[0.625rem] font-medium text-text-tertiary/30 w-4 md:w-5 flex-shrink-0 tabular-nums">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="flex-1 text-sm md:text-base font-medium text-text truncate group-hover:text-accent transition-colors">
-          {item.role}
-        </span>
+        <div className="flex-1 min-w-0">
+          <span className="block text-sm md:text-base font-medium text-text truncate group-hover:text-accent transition-colors">
+            {item.role}
+          </span>
+          <span className="block md:hidden text-[0.625rem] text-text-tertiary/60 truncate mt-0.5">
+            {item.organization} &middot; {item.year}
+          </span>
+        </div>
         <span className="hidden sm:block text-xs text-text-tertiary/60 flex-shrink-0">
           {item.organization}
         </span>
@@ -90,14 +95,14 @@ function Row({
             transition={{ duration: 0.3, ease }}
             className="overflow-hidden"
           >
-            <div className="pb-4 md:pb-5 pl-8 md:pl-9">
-              <p className="text-xs text-text-secondary/70 leading-relaxed mb-3 max-w-xl">
+            <div className="pb-3 md:pb-5 pl-6 md:pl-9">
+              <p className="text-xs text-text-secondary/70 leading-relaxed mb-2.5 max-w-xl">
                 {item.description}
               </p>
-              <ul className="space-y-1.5 mb-3">
+              <ul className="space-y-1.5 mb-2.5">
                 {item.achievements.slice(0, 3).map((a, i) => (
                   <li key={i} className="flex items-start gap-2 text-xs text-text-tertiary/60 leading-relaxed">
-                    <span className="mt-[5px] h-px w-3 flex-shrink-0 bg-text-tertiary/20" />
+                    <span className="mt-[5px] h-px w-2.5 md:w-3 flex-shrink-0 bg-text-tertiary/20" />
                     {a}
                   </li>
                 ))}
@@ -127,7 +132,7 @@ export default function Experience() {
   return (
     <section id="journey" className="section-gap">
       <div className="container-lg">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 md:mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 md:gap-4 mb-8 md:mb-14">
           <div>
             <motion.span
               initial={{ opacity: 0, y: 12 }}

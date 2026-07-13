@@ -66,7 +66,7 @@ function Card({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.08 * index, ease }}
       whileHover={{ y: -4, borderColor: "var(--color-accent)" }}
-      className="border border-border-subtle rounded-xl bg-surface p-5 md:p-6 transition-colors"
+      className="border border-border-subtle rounded-xl bg-surface p-4 md:p-6 transition-colors"
     >
       {children}
     </motion.div>
@@ -92,20 +92,19 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease }}
-          className="heading-xl mb-14 md:mb-18"
+          className="heading-xl mb-10 md:mb-16"
         >
           My Story
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto space-y-20 md:space-y-24">
-          {/* WHO I AM */}
+        <div className="max-w-4xl mx-auto space-y-12 md:space-y-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease }}
           >
-            <span className="label-lg mb-4 block">Who I Am</span>
+            <span className="label-lg mb-3 md:mb-4 block">Who I Am</span>
             <p className="body-xl leading-relaxed">
               I build AI-powered digital products that combine thoughtful engineering with
               intuitive user experiences. As a final-year Computer Science student, I enjoy
@@ -113,13 +112,12 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* WHAT I BUILD */}
           <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
           >
-            <span className="label-lg mb-5 block">What I Build</span>
+            <span className="label-lg mb-4 md:mb-5 block">What I Build</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               {[
                 { icon: <IconAI />, title: "AI Applications", desc: "Production-ready AI systems powered by LLMs and modern workflows." },
@@ -128,8 +126,8 @@ export default function About() {
                 { icon: <IconTool />, title: "Developer Tools", desc: "Tools and workflows that improve developer productivity." },
               ].map((item, i) => (
                 <Card key={item.title} index={i}>
-                  <div className="mb-3">{item.icon}</div>
-                  <h4 className="text-sm font-medium text-text mb-1.5">{item.title}</h4>
+                  <div className="mb-2.5 md:mb-3">{item.icon}</div>
+                  <h4 className="text-sm font-medium text-text mb-1 md:mb-1.5">{item.title}</h4>
                   <p className="text-xs text-text-tertiary leading-relaxed">{item.desc}</p>
                 </Card>
               ))}

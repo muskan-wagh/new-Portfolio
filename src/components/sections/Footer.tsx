@@ -4,8 +4,8 @@ import { siteConfig } from "@/lib/data";
 export default function Footer() {
   return (
     <footer className="border-t border-border-subtle">
-      <div className="container-lg py-12 md:py-16">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div className="container-lg py-8 md:py-16">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
           <div>
             <p className="font-semibold text-sm tracking-tight text-text">
               {siteConfig.name}
@@ -15,7 +15,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <a
               href={`mailto:${siteConfig.email}`}
               className="body-sm text-text-tertiary hover:text-text transition-colors"
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="divider-thin my-8" />
+        <div className="divider-thin my-6 md:my-8" />
 
         <p className="body-sm text-text-tertiary text-center md:text-left">
           &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.

@@ -30,7 +30,7 @@ export default function Achievements() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="card p-6 md:p-10 lg:p-12"
+          className="card p-5 md:p-8 lg:p-10"
         >
           <motion.span
             variants={item}
@@ -39,13 +39,13 @@ export default function Achievements() {
             07
           </motion.span>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mt-4 md:mt-5">
             {stats.map((stat) => (
               <motion.div key={stat.label} variants={item}>
-                <p className="stat-number mb-2">{stat.value}</p>
+                <p className="stat-number mb-1.5 md:mb-2">{stat.value}</p>
                 <p className="stat-label">{stat.label}</p>
                 {stat.description && (
-                  <p className="body-sm mt-3 text-text-tertiary">{stat.description}</p>
+                  <p className="body-sm mt-2 md:mt-3 text-text-tertiary">{stat.description}</p>
                 )}
               </motion.div>
             ))}

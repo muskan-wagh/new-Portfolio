@@ -24,7 +24,7 @@ export default function Certificates() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease }}
-          className="heading-xl mb-10"
+          className="heading-xl mb-8 md:mb-10"
         >
           Credentials
         </motion.h2>
@@ -38,10 +38,10 @@ export default function Certificates() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.08 * i, ease }}
               whileHover={{ y: -4, borderColor: "var(--color-accent)" }}
-              className="border border-border-subtle rounded-xl bg-surface p-5 md:p-6 transition-colors"
+              className="border border-border-subtle rounded-xl bg-surface p-4 md:p-6 transition-colors"
             >
               <h3 className="text-sm font-medium text-text mb-1">{cert.title}</h3>
-              <p className="text-xs text-text-tertiary/70 mb-3">{cert.issuer}</p>
+              <p className="text-xs text-text-tertiary/70 mb-2.5 md:mb-3">{cert.issuer}</p>
               <div className="flex flex-wrap gap-1.5">
                 {cert.skills.map((skill) => (
                   <span key={skill} className="tech-badge">

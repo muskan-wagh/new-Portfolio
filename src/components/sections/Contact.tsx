@@ -18,7 +18,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="section-number mb-8 block"
+            className="section-number mb-6 md:mb-8 block"
           >
             08
           </motion.span>
@@ -28,7 +28,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease }}
-            className="heading-2xl mb-6"
+            className="heading-2xl mb-4 md:mb-6"
           >
             Let&apos;s create something
             <br />
@@ -40,7 +40,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease }}
-            className="body-lg text-text-tertiary max-w-lg mx-auto mb-12"
+            className="body-sm md:body-lg text-text-tertiary max-w-lg mx-auto mb-8 md:mb-12"
           >
             I&apos;m always looking for ambitious projects and meaningful
             collaborations. Whether you have an idea, a problem to solve, or
@@ -52,19 +52,19 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease }}
-            className="flex flex-col items-center gap-8"
+            className="flex flex-col items-center gap-6 md:gap-8"
           >
             <a
               href={`mailto:${siteConfig.email}`}
-              className="inline-flex items-center gap-3 text-xl font-medium text-text hover:text-text-tertiary transition-colors group"
+              className="inline-flex items-center gap-3 text-base md:text-xl font-medium text-text hover:text-text-tertiary transition-colors group"
             >
               {siteConfig.email}
-              <ArrowUpRightIcon width={18} height={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRightIcon width={16} height={16} className="md:w-[18px] md:h-[18px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
-            <div className="h-px w-16 bg-border-subtle" />
+            <div className="h-px w-12 md:w-16 bg-border-subtle" />
 
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-6 md:gap-8">
               <a
                 href={siteConfig.social.github}
                 target="_blank"
@@ -72,7 +72,7 @@ export default function Contact() {
                 className="text-text-tertiary hover:text-text transition-all duration-300 hover:scale-110"
                 aria-label="GitHub"
               >
-                <GithubIcon width={18} height={18} />
+                <GithubIcon width={20} height={20} />
               </a>
               <a
                 href={siteConfig.social.linkedin}
@@ -81,7 +81,7 @@ export default function Contact() {
                 className="text-text-tertiary hover:text-text transition-all duration-300 hover:scale-110"
                 aria-label="LinkedIn"
               >
-                <LinkedinIcon width={18} height={18} />
+                <LinkedinIcon width={20} height={20} />
               </a>
               <a
                 href={siteConfig.social.twitter}
@@ -90,16 +90,16 @@ export default function Contact() {
                 className="text-text-tertiary hover:text-text transition-all duration-300 hover:scale-110"
                 aria-label="Twitter"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75h-3.27l7.201-8.22L2.01 2.25H8.16l4.711 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
-              <span className="text-text-tertiary text-sm font-medium">
+              <span className="hidden md:inline text-text-tertiary text-sm font-medium">
                 {siteConfig.location}
               </span>
             </div>
 
-            <div className="h-px w-16 bg-border-subtle" />
+            <div className="h-px w-12 md:w-16 bg-border-subtle" />
 
             <p className="body-sm text-text-tertiary">
               Available for freelance, full-time, and consulting opportunities

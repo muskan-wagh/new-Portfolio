@@ -303,7 +303,7 @@ function ProjectContent({ project }: { project: typeof projects[number] }) {
 
       <TechBadges items={p.tech} />
 
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 md:gap-3 pt-0 md:pt-1">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 md:gap-3">
         <ProjectButton href={p.demo} label="Live Demo" primary fullWidth />
         <ProjectButton href={p.github} label="GitHub" icon={<GithubIcon width={14} height={14} />} fullWidth />
       </div>
@@ -311,7 +311,7 @@ function ProjectContent({ project }: { project: typeof projects[number] }) {
   );
 }
 
-// ─── Project Card (Desktop: side-by-side, Mobile: stacked) ───
+// ─── Project Card ───
 
 function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) {
   const isReversed = index % 2 === 1;
@@ -338,7 +338,7 @@ function ProjectCard({ project, index }: { project: typeof projects[number]; ind
           transition={{ duration: 0.7, delay: 0.1, ease }}
           className={isReversed ? 'lg:order-2' : ''}
         >
-          <div className="aspect-[16/9] lg:aspect-auto lg:h-full min-h-[180px]">
+          <div className="aspect-[16/9] lg:aspect-auto lg:h-full min-h-[160px]">
             {previewComponents[index]}
           </div>
         </motion.div>
@@ -378,7 +378,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease }}
-          className="heading-xl mb-12 md:mb-20"
+          className="heading-xl mb-10 md:mb-16"
         >
           Featured Work
         </motion.h2>
@@ -388,7 +388,7 @@ export default function Projects() {
             <div key={project.id}>
               <ProjectCard project={project} index={i} />
               {i < projects.length - 1 && (
-                <div className="my-12 md:my-20">
+                <div className="my-10 md:my-16">
                   <AnimatedDivider />
                 </div>
               )}
