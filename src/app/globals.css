@@ -563,11 +563,12 @@
 
   /* ─── Preview Hover Glow ─── */
   .preview-glow {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .preview-glow:hover {
-    box-shadow: 0 0 0 1px var(--color-accent), 0 0 30px -10px var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent), 0 8px 32px -8px rgba(169, 138, 103, 0.25);
   }
 
   /* ─── Challenge Tag ─── */
